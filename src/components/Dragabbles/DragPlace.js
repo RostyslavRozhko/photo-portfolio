@@ -4,6 +4,7 @@ import { ItemType } from '../../constants/index';
 import { DropTarget } from 'react-dnd';
 import {DRAG_END, DRAG_BEGIN} from '../../constants/events'
 import PropTypes from 'prop-types'
+import Resizer from '../Resizer'
 
 class DragPlace extends Component {
   subscription = []
@@ -33,13 +34,15 @@ class DragPlace extends Component {
   }
 
   render() {
-    const {img: {url, id}, connectDropTarget, isOver} = this.props
+    const {img: {url}, connectDropTarget} = this.props
     const {isDragging} = this.state
     return connectDropTarget(
         <div className="drag-image__decorator-container">
           {isDragging &&
-            <div className="drag-image__decorator" style={{backgroundColor: 'yellow'}}></div>}
-          <img src={url}  className="drag-image__target" alt="" />
+              <div className="drag-image__decorator" style={{backgroundColor: 'yellow'}}></div>}
+          {url && <Resizer height={300} width={300} >
+            <img src={url}  className="drag-image__target" alt="" />
+          </Resizer>}
         </div>
     );
   }

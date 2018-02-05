@@ -6,7 +6,7 @@ import {DRAG_BEGIN, DRAG_END} from '../../constants/events'
 
 class DragImage extends Component {
   render() {
-    const {img: {url, id}, connectDragSource, isDragging} = this.props
+    const {img: {url}, connectDragSource, isDragging} = this.props
     return connectDragSource(
       <img src={url}  className="drag-image" alt="" style={{
                                                       opacity: isDragging ? 0.5 : 1,
