@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import {ItemType} from '../../constants'
 import { DragSource } from 'react-dnd'
+import PropTypes from 'prop-types'
+import {DRAG_BEGIN, DRAG_END} from '../../constants/events'
 
 class DragImage extends Component {
   render() {
@@ -14,9 +16,17 @@ class DragImage extends Component {
   }
 }
 
+DragImage.contextTypes = {
+  emitter: PropTypes.object
+}
+
 const imageSource = {
-  beginDrag(props) {
+  beginDrag(props, monitor, component) {
+    component.context.emitter.emit(DRAG_BEGIN)
     return {imageId: props.img.id}
+  },
+  endDrag(props, monitorm, component) {
+    component.context.emitter.emit(DRAG_END)
   }
 }
 

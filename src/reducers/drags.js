@@ -3,7 +3,6 @@ import {CHANGE_IMAGE} from '../constants/index'
 const drags = (state = {}, action) => {
   switch (action.type) {
     case CHANGE_IMAGE:
-      console.log(action)
       return {
         ...state,
         imagePlaces: {
