@@ -109,6 +109,7 @@ class Resizer extends Component {
 
   render() {
     const {height, width} = this.state
+    const {allowDrag} = this.props
     return (
       <DraggableCore
         axis={this.props.axis}
@@ -118,7 +119,7 @@ class Resizer extends Component {
         onStop={this.handleResize('onResizeStop')}>
         <div className="resize-container" style={{height, width}} >
           {this.props.children}
-          <span className="resizer" ref={ref => this.resizer = ref}></span>
+          {allowDrag && <span className="resizer" ref={ref => this.resizer = ref}></span>}
         </div>
       </DraggableCore>
     )

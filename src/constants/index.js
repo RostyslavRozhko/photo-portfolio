@@ -1,4 +1,5 @@
-export const CHANGE_IMAGE = "CHANGE_IMAGE"
+export const CHANGE_IMAGE = 'CHANGE_IMAGE'
+export const ADD_BLOCK = 'ADD_BLOCK'
 
 
 // drags types

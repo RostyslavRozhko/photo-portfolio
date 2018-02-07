@@ -34,16 +34,18 @@ class DragPlace extends Component {
   }
 
   render() {
-    const {img: {url}, connectDropTarget} = this.props
+    const {img: {url}, connectDropTarget, size: {height, width}, styling} = this.props
     const {isDragging} = this.state
     return connectDropTarget(
-        <div className="drag-image__decorator-container">
-          {isDragging &&
-              <div className="drag-image__decorator" style={{backgroundColor: 'yellow'}}></div>}
-          {url && <Resizer height={300} width={300} >
-            <img src={url}  className="drag-image__target" alt="" />
-          </Resizer>}
-        </div>
+      <div style={styling}>
+        <Resizer height={height} width={width} allowDrag={url ? true : false}>
+          <div className="drag-image__decorator-container" >
+            {isDragging &&
+                <div className="drag-image__decorator" style={{backgroundColor: 'yellow'}}></div>}
+            {url && <img src={url}  className="drag-image__target" alt="" /> }
+          </div>
+        </Resizer> 
+      </div>    
     );
   }
 }
@@ -55,7 +57,7 @@ DragPlace.contextTypes = {
 const placeTarget = {
   drop(props, monitor) {
     const {imageId} = monitor.getItem()
-    const {dispatch, img: {id}} = props
+    const {dispatch, id} = props
     dispatch(changeImage(id, imageId))
   }
 }

@@ -1,23 +1,28 @@
 import React, { Component } from 'react'
-import DragPlace from '../../components/Dragabbles/DragPlace'
+import Block from '../Block/index'
 import { connect } from 'react-redux'
+import {blockSettings} from '../../utils/blocks'
+import {addBlock} from '../../actions/index'
 
 class Website extends Component {
   render() {
-    const {imagePlaces, dispatch} = this.props
+    const {blocks, dispatch} = this.props
     return (
       <div className="website">
-        {imagePlaces.ids.map(id => {
-          const img = imagePlaces.entities[id]
-          return <DragPlace img={img} key={img.id} dispatch={dispatch} />
+        {blocks.ids.map(id => {
+          const block = blocks.entities[id]
+          return <Block block={block} key={id} />
         })}
+        {blockSettings.ids.map(elem => (
+          <input type="button" onClick={() => dispatch(addBlock(elem, blockSettings.entities[elem].images.length))} key={elem} value={elem} />
+        ))}
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  imagePlaces: state.drags.imagePlaces
+  blocks: state.drags.blocks
 })
 
 export default connect(mapStateToProps)(Website)

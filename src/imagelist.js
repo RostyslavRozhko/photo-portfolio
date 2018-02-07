@@ -38,32 +38,26 @@ export const state = {
       }
     },
     imagePlaces: {
-      ids: [1, 2, 3, 4, 5, 6],
+      ids: [1, 2, 3],
       entities: {
         '1': {
-          id: 1,
           url: ''        
         },
         '2': {
-          id: 2,
           url: ''        
         },
         '3': {
-          id: 3,
           url: ''        
-        },
-        '4': {
-          id: 4,
-          url: ''        
-        },
-        '5': {
-          id: 5,
-          url: ''        
-        },
-        '6': {
-          id: 6,
-          url: ''        
-        },
+        }
+      }
+    },
+    blocks: {
+      ids: [1],
+      entities: {
+        '1': {
+          blockName: 'block1',
+          imagePlacesIds: [1, 2, 3]
+        }
       }
     }
   }

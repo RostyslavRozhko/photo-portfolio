@@ -9,7 +9,7 @@ class Sidepanel extends Component {
       <div className="sidepanel">
         {images.ids.map(id => {
           const img = images.entities[id]
-          return <DragImage img={img} key={img.id} />
+          return <DragImage img={img} key={id} />
         })}
       </div>
     );
